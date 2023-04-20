@@ -16,10 +16,12 @@
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@hooks/*": ["./src/hooks/*"]
+      "@hooks/*": ["./src/hooks/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@models/*": ["./src/models/*"],
     },
   },
   "browser": { "fs": false, "child_process": false },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/hooks/useMongoDB.jsx"],
   "exclude": ["node_modules"]
 }

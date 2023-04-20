@@ -1,4 +1,4 @@
-import useMongoDB from '@hooks/useMongoDB';
+import {useMongoDB} from '@hooks/useMongoDB';
 
 export default async function handler(req, res) {
   const db = useMongoDB();

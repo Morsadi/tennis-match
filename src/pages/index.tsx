@@ -1,23 +1,30 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-import useMongoDB from '@/hooks/useMongoDB'
+// import styles from '@/styles/Home.module.css'
+import {getMembers} from '../hooks/useMongoDB';
+import User from '../models/user'
+import { useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   // const insertDocument = useInsertDocument('myCollection');
-  const [db, error] = useMongoDB();
+  // const [formData, setFormData] = useState({name: 'Ron', email: 'ron@gmail.com'});
+  // const [members, error] = getMembers();
 
-  async function handleEvent (e){
-    e.preventDefault();
 
-    const newDocument = {
-      name: "badr",
-      email: "bmorsadi@gmail.com",
-      password: "1234",
-    };
+  console.log(getMembers())
+
+  // const handleEvent = async (event) => {
+  //   event.preventDefault()
+  //   const res = await fetch('/api/user/find', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(formData),
+  //   })
+  //   // handle the response from the server
+  // }
 
     // try {
     //   await insertDocument(newDocument);
@@ -25,9 +32,8 @@ export default function Home() {
     // } catch (err) {
     //   console.error('Failed to save document', err);
     // }
-    console.log(db);
+    // console.log(db);
     
-  }
 
   return (
     <>
@@ -37,9 +43,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <main>
+        {/* <button onClick={handleEvent}>Add Client</button> */}
 
-      <button onClick={handleEvent}>Add Client</button>
       </main>
     </>
   )
