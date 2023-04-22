@@ -1,22 +1,21 @@
-import { useState, useEffect } from 'react';
-import connectMongo from '@utils/connectDB';
-import User from '@models/user';
+// import { useState, useEffect } from 'react';
+// import connectMongo from '@utils/connectDB';
+// import User from '@models/user';
 
-async function getMembers() {
-	const [members, setMembers] = useState([]);
-	const [error, setError] = useState(null);
+// async function getMembers() {
+// 	const [members, setMembers] = useState([]);
+// 	const [error, setError] = useState(null);
 
-	try {
-		await connectMongo();
+// 	try {
+// 		await connectMongo();
 
-		const allMembers = await User.find();
-		setMembers(allMembers);
+// 		const allMembers = await User.find();
+// 		setMembers(allMembers);
 
-		return [members, error];
-	} catch (err) {
-		setError(err);
-	}
-	return [db, error];
-}
+// 	} catch (err) {
+// 		setError(err);
+// 	}
+// 	return [members, db, error];
+// }
 
-export { getMembers };
+// export default getMembers;

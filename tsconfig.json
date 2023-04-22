@@ -22,6 +22,6 @@
     },
   },
   "browser": { "fs": false, "child_process": false },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/hooks/useMongoDB.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/hooks/useMongoDB.jsx", "src/models/user.js", "src/utils/connectDB.js"],
   "exclude": ["node_modules"]
 }
