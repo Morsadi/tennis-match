@@ -1,0 +1,26 @@
+.register {
+    display: grid;
+	place-items: center;
+	margin-top: var(--space-16);
+	margin-inline: auto;
+	max-width: var(--controlled-width);
+}
+
+.register form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
+	width: 100%;
+}
+
+.register form input {
+	width: 100%;
+	font-size: var(--text-2xl);
+}
+
+.register form input[type='text'] {
+	text-transform: capitalize;
+}
+.register form input[type='submit'] {
+	text-transform: uppercase;
+}

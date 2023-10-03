@@ -1,19 +1,17 @@
-import { Schema, model, models, connect } from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
-// Define the user schema
 const userSchema = new Schema({
-  name: String,
-  email: String,
-  password: String,
+	firstName: String,
+	lastName: String,
+	email: String,
+	level: Number,
+	referrer: String,
+	approved: {
+		type: Boolean,
+		default: false,
+	},
 });
 
-// Connect to the MongoDB database
-const uri = 'mongodb://localhost:27017/mydatabase';
-connect(uri)
-  .then(() => console.log('MongoDB Connected'))
-  .catch((err) => console.log(err));
-
-// Define the User model
-const User = model('User', userSchema);
+const User = models.users || model('users', userSchema);
 
 export default User;

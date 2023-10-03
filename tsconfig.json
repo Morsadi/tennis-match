@@ -19,9 +19,11 @@
       "@hooks/*": ["./src/hooks/*"],
       "@utils/*": ["./src/utils/*"],
       "@models/*": ["./src/models/*"],
+      "@components/*": ["./src/components/*"],
+      "@styles/*": ["./src/styles/*"],
     },
   },
   "browser": { "fs": false, "child_process": false },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/hooks/useMongoDB.jsx", "src/models/user.js", "src/utils/connectDB.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/hooks/useMongoDB.jsx", "src/models/user.js", "src/utils/connectDB.js", "src/styles/Membership.module.css"],
   "exclude": ["node_modules"]
 }

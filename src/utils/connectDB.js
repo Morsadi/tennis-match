@@ -1,13 +1,11 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const connectMongo = async () => {
-  const url = 'mongodb://localhost:27017/tennis-app';
-  try {
-    await mongoose.connect(url);
-    console.log('Connected to MongoDB');
-  } catch (error) {
-    console.log('Error connecting to MongoDB:', error);
-  }
-}
+  const uri = 'mongodb://localhost:27017/Lineup2v';
+	mongoose
+		.connect(uri)
+		.then(() => console.log('Users DB connected'))
+		.catch((err) => console.log(err));
+};
 
 export default connectMongo;
