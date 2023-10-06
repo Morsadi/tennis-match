@@ -1,45 +1,66 @@
 import mongoose from 'mongoose';
 import User from '../../../models/user';
+import connectMongo from '@utils/connectDB';
 
 export default async function handler(req, res) {
-  const { action, _id, updates = {} } = req.body;
+	const { action, _id, actionData = {} } = req.body;
+	// Connect to MongoDB
+	await connectMongo();
 
-  try {
-    if (action === 'delete') {
-      // Find and delete the user by _id
-      const deletedUser = await User.findByIdAndRemove(_id);
+	try {
+		let responseMessage;
+		let statusCode = 200;
 
-      if (!deletedUser) {
-        console.log('User not found');
-        return res.status(404).json({ error: 'User not found' });
-      }
+		switch (action) {
+			case 'add':
+				const existingUser = await User.findOne({ email: actionData.email });
+				if (existingUser) {
+					responseMessage = 'The email address entered is already in use.';
+					statusCode = 409;
+				} else {
+					const newUser = new User(actionData);
+					await newUser.save();
+					responseMessage = "Thank you for submitting your request. We'll get back to you as soon as possible.";
+				}
+				break;
 
-      console.log('User deleted successfully');
-      res.status(200).json({
-        message: 'User deleted successfully',
-      });
-    } else if (action === 'update') {
-      // Find the user by _id and update it
-      const updatedUser = await User.findByIdAndUpdate(_id, updates, { new: true });
+			case 'get':
+				const users = await User.find(actionData);
 
-      if (!updatedUser) {
-        console.log('User not found');
-        return res.status(404).json({ error: 'User not found' });
-      }
+				console.log('Users retrieved');
+				res.status(200).json(users);
+				break;
 
-      console.log('User updated successfully');
-      res.status(200).json({
-        message: 'User updated successfully',
-        updatedUser,
-      });
-    } else {
-      // Handle invalid action
-      console.log('Invalid action:', action);
-      res.status(400).json({ error: 'Invalid action' });
-    }
-  } catch (error) {
-    // Handle any errors that may occur during the operation
-    console.error('Error:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
+			case 'update':
+				const updatedUser = await User.findByIdAndUpdate(_id, actionData, { new: true });
+				if (!updatedUser) {
+					responseMessage = 'User not found';
+					statusCode = 404;
+				} else {
+					responseMessage = 'User updated successfully';
+				}
+				break;
+
+			case 'delete':
+				const deletedUser = await User.findByIdAndRemove(_id);
+				if (!deletedUser) {
+					responseMessage = 'User not found';
+					statusCode = 404;
+				} else {
+					responseMessage = 'User deleted successfully';
+				}
+				break;
+
+			default:
+				responseMessage = 'Invalid action';
+				statusCode = 400;
+				break;
+		}
+
+		console.log(responseMessage);
+		res.status(statusCode).json({ message: responseMessage });
+	} catch (error) {
+		console.error('Error:', error);
+		res.status(500).json({ error: 'Internal server error' });
+	}
 }

@@ -22,7 +22,6 @@ export default function Membership() {
 			level,
 			referrer,
 		};
-		console.log(newUser);
 		addUser(newUser);
 	};
 	return (

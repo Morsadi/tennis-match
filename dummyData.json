@@ -1,83 +1,82 @@
 [
-    {
-      "firstName": "John",
-      "lastName": "Doe",
-      "email": "johndoe@example.com",
-      "level": 2.0,
-      "referrer": "Alice Johnson",
-      "approved": false
-    },
-    {
-      "firstName": "Alice",
-      "lastName": "Johnson",
-      "email": "alice@example.com",
-      "level": 3.0,
-      "referrer": "Bob Smith",
-      "approved": false
-    },
-    {
-      "firstName": "Bob",
-      "lastName": "Smith",
-      "email": "bob@example.com",
-      "level": 2.5,
-      "referrer": "Eve Wilson",
-      "approved": false
-    },
-    {
-      "firstName": "Eve",
-      "lastName": "Wilson",
-      "email": "eve@example.com",
-      "level": 4.0,
-      "referrer": "Grace Lee",
-      "approved": false
-    },
-    {
-      "firstName": "Grace",
-      "lastName": "Lee",
-      "email": "grace@example.com",
-      "level": 4.5,
-      "referrer": "John Doe",
-      "approved": false
-    },
-    {
-      "firstName": "Mark",
-      "lastName": "Anderson",
-      "email": "mark@example.com",
-      "level": 2.5,
-      "referrer": "Alice Johnson",
-      "approved": false
-    },
-    {
-      "firstName": "Laura",
-      "lastName": "Brown",
-      "email": "laura@example.com",
-      "level": 3.5,
-      "referrer": "Bob Smith",
-      "approved": false
-    },
-    {
-      "firstName": "Daniel",
-      "lastName": "White",
-      "email": "daniel@example.com",
-      "level": 5.0,
-      "referrer": "Eve Wilson",
-      "approved": false
-    },
-    {
-      "firstName": "Sophia",
-      "lastName": "Taylor",
-      "email": "sophia@example.com",
-      "level": 4.5,
-      "referrer": "Grace Lee",
-      "approved": false
-    },
-    {
-      "firstName": "Oliver",
-      "lastName": "Moore",
-      "email": "oliver@example.com",
-      "level": 2.0,
-      "referrer": "John Doe",
-      "approved": false
-    }
-  ]
-  
+  {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "johndoe@example.com",
+    "level": 2.0,
+    "referrer": "Alice Johnson",
+    "approved": false
+  },
+  {
+    "firstName": "Alice",
+    "lastName": "Johnson",
+    "email": "alice@example.com",
+    "level": 3.0,
+    "referrer": "Bob Smith",
+    "approved": false
+  },
+  {
+    "firstName": "Bob",
+    "lastName": "Smith",
+    "email": "bob@example.com",
+    "level": 2.5,
+    "referrer": "Eve Wilson",
+    "approved": false
+  },
+  {
+    "firstName": "Eve",
+    "lastName": "Wilson",
+    "email": "eve@example.com",
+    "level": 4.0,
+    "referrer": "Grace Lee",
+    "approved": false
+  },
+  {
+    "firstName": "Grace",
+    "lastName": "Lee",
+    "email": "grace@example.com",
+    "level": 4.5,
+    "referrer": "John Doe",
+    "approved": false
+  },
+  {
+    "firstName": "Mark",
+    "lastName": "Anderson",
+    "email": "mark@example.com",
+    "level": 2.5,
+    "referrer": "Alice Johnson",
+    "approved": false
+  },
+  {
+    "firstName": "Laura",
+    "lastName": "Brown",
+    "email": "laura@example.com",
+    "level": 3.5,
+    "referrer": "Bob Smith",
+    "approved": false
+  },
+  {
+    "firstName": "Daniel",
+    "lastName": "White",
+    "email": "daniel@example.com",
+    "level": 5.0,
+    "referrer": "Eve Wilson",
+    "approved": false
+  },
+  {
+    "firstName": "Sophia",
+    "lastName": "Taylor",
+    "email": "sophia@example.com",
+    "level": 4.5,
+    "referrer": "Grace Lee",
+    "approved": false
+  },
+  {
+    "firstName": "Oliver",
+    "lastName": "Moore",
+    "email": "oliver@example.com",
+    "level": 2.0,
+    "referrer": "John Doe",
+    "approved": false
+  }
+]

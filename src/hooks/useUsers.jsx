@@ -26,23 +26,8 @@ export const fetchUsers = (url, updating) => {
 	return [data, isLoading, error];
 };
 
-export async function updateUser(value) {
-	try {
-
-		const response = await fetch('/api/user/updateUser', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(value),
-		});
-	} catch (err) {
-		console.log(err)
-	}
-}
 export async function useMethod(value) {
 	try {
-
 		const response = await fetch('/api/user/method', {
 			method: 'POST',
 			headers: {
@@ -51,6 +36,6 @@ export async function useMethod(value) {
 			body: JSON.stringify(value),
 		});
 	} catch (err) {
-		console.log(err)
+		console.log(err);
 	}
 }

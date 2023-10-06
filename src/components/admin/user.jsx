@@ -2,17 +2,17 @@ import Head from 'next/head';
 import { useState } from 'react';
 import styles from '@styles/Admin.module.css';
 import { Button } from './button';
-import { updateUser, useMethod } from '@hooks/useUsers';
+import { useMethod } from '@hooks/useUsers';
 // ____--------------------------_______-----________------------
 // Use a confirmation popup for these buttons
 
 export const User = ({ setUpdating, updating, user: { _id, firstName, lastName, email, level, referrer, approved } }) => {
 	async function updateUserHandler() {
-		const updates = {
+		const actionData = {
 			approved: true,
 		};
 
-		await useMethod({ action: 'update', _id, updates });
+		await useMethod({ action: 'update', _id, actionData });
 		setUpdating(!updating);
 	}
 
@@ -33,7 +33,7 @@ export const User = ({ setUpdating, updating, user: { _id, firstName, lastName, 
 				{!approved ? (
 					<>
 						<Button userId={_id} actionFn={updateUserHandler} type='approve' />
-						<Button userId={_id} actionFn={updateUserHandler} type='decline' />
+						<Button userId={_id} actionFn={deleteUserHandler} type='decline' />
 					</>
 				) : (
 					<>

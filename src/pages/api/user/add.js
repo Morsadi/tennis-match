@@ -14,7 +14,7 @@ export default async function handler(req, res) {
 		const existingUser = await User.findOne({ email });
 
 		if (existingUser) {
-			res.status(409).json({ message: 'The email address entered is already in use.' });
+			res.status(200).json({ message: 'The email address entered is already in use.' });
 			return;
 		}
 
