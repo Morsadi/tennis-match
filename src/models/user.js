@@ -6,6 +6,10 @@ const userSchema = new Schema({
 	email: String,
 	level: Number,
 	referrer: String,
+	partner: {
+		type: String,
+		default: '',
+	},
 	approved: {
 		type: Boolean,
 		default: false,

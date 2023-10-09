@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
-import { fetchUsers } from '@hooks/useUsers';
 import styles from '@styles/Admin.module.css';
 import { User } from '../components/admin/user';
+import { usePlayers } from '@hooks/players';
+import { useEffect } from 'react';
 
 export default function Admin() {
-	const [url, setUrl] = useState('/api/user/getUsers');
 	const [updating, setUpdating] = useState(false);
+	const [users, setUsers] = useState([]);
+	const { getUsers, deleteUser, updateUser, data, isLoading, error } = usePlayers();
 
+	// Example usage for getting users
 
-	const [data, isLoading, error] = fetchUsers(url, updating);
+	useEffect(() => {
+		getUsers();
+	}, []);
+
+	const updateUserHandler = async (_id, actionData) => {
+		await updateUser(_id, actionData)
+	}
+	const deleteUserHandler = async (_id) => {
+		await deleteUser(_id)
+	}
+
 	return (
 		<>
 			<Head>
@@ -19,10 +32,12 @@ export default function Admin() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<main className={styles.players}>
-				{error ? (
+				{isLoading ? (
+					<p>Loading...</p>
+				) : error ? (
 					<p>There has been a server issue.</p>
 				) : (
-					data.map((user, i) => <User key={`${user._id}-${i}`} updating={updating} setUpdating={setUpdating} user={user} />)
+					data?.map((user, i) => <User key={`${user._id}-${i}`} updateUserHandler={updateUserHandler} deleteUserHandler={deleteUserHandler}user={user} />)
 				)}
 			</main>
 		</>

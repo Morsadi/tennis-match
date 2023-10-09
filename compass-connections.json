@@ -1,0 +1,23 @@
+{
+  "type": "Compass Connections",
+  "version": {
+    "$numberInt": "1"
+  },
+  "connections": [
+    {
+      "id": "65fb88d4-6d3b-4961-9cfb-85069dfcb984",
+      "connectionOptions": {
+        "connectionString": "mongodb://localhost:27017/"
+      },
+      "favorite": {
+        "name": "Tennis App",
+        "color": "color2"
+      },
+      "lastUsed": {
+        "$date": {
+          "$numberLong": "1696865747825"
+        }
+      }
+    }
+  ]
+}

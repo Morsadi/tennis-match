@@ -2,24 +2,15 @@ import Head from 'next/head';
 import { useState } from 'react';
 import styles from '@styles/Admin.module.css';
 import { Button } from './button';
-import { useMethod } from '@hooks/useUsers';
+import { usePlayers } from '@hooks/players';
 // ____--------------------------_______-----________------------
 // Use a confirmation popup for these buttons
 
-export const User = ({ setUpdating, updating, user: { _id, firstName, lastName, email, level, referrer, approved } }) => {
-	async function updateUserHandler() {
-		const actionData = {
-			approved: true,
-		};
+export const User = ({ deleteUserHandler, updateUserHandler, user: { _id, firstName, lastName, email, level, referrer, approved } }) => {
 
-		await useMethod({ action: 'update', _id, actionData });
-		setUpdating(!updating);
-	}
-
-	async function deleteUserHandler() {
-		await useMethod({ action: 'delete', _id });
-		setUpdating(!updating);
-	}
+	const actionData = {
+		approved: true,
+	};
 
 	return (
 		<div className={styles.player}>
@@ -32,13 +23,13 @@ export const User = ({ setUpdating, updating, user: { _id, firstName, lastName, 
 			<div className={styles.ctaCont}>
 				{!approved ? (
 					<>
-						<Button userId={_id} actionFn={updateUserHandler} type='approve' />
-						<Button userId={_id} actionFn={deleteUserHandler} type='decline' />
+						<Button userId={_id} actionFn={async()=>await updateUserHandler(_id, actionData)} type='approve' />
+						<Button userId={_id} actionFn={async()=>await deleteUserHandler(_id)} type='decline' />
 					</>
 				) : (
 					<>
 						<div>
-							<Button userId={_id} actionFn={deleteUserHandler} type='delete' />
+							<Button userId={_id} actionFn={async()=>await deleteUserHandler(_id)} type='delete' />
 						</div>
 					</>
 				)}
