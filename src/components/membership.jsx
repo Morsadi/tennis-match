@@ -1,42 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import styles from '@styles/Membership.module.css';
 import { usePlayers } from '@hooks/players';
-import { useEffect } from 'react';
 
 export default function Membership() {
 	const { getUsers, addUser, data, isLoading, message } = usePlayers();
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
-	const [email, setEmail] = useState('');
-	const [level, setLevel] = useState('');
-	const [referrer, setReferrer] = useState('');
+	const [user, setUser] = useState({
+		firstName: '',
+		lastName: '',
+		email: '',
+		level: '',
+		referrer: '',
+	});
 
-	console.log('test')
+	const { firstName, lastName, email, level, referrer } = user;
 
 	const saveUser = async (event) => {
 		event.preventDefault();
 
-		const newPlayer = {
-			firstName,
-			lastName,
-			email,
-			level,
-			referrer,
-		};
+		await addUser(user);
 
-		await addUser(newPlayer);
-
-		setFirstName('');
-		setLastName('');
-		setEmail('');
-		setLevel('');
-		setReferrer('');
+		// Reset user fields
+		setUser({
+			firstName: '',
+			lastName: '',
+			email: '',
+			level: '',
+			referrer: '',
+		});
 	};
 
 	useEffect(() => {
-		getUsers();
+		getUsers({ approved: true });
 	}, []);
+
 	return (
 		<>
 			<Head>
@@ -46,14 +43,14 @@ export default function Membership() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<main className={styles.register}>
-				<p>players in the Team: {data.length}</p>
+				<p>Players in the Team: {data.length}</p>
 				<form name='' onSubmit={saveUser}>
 					<label>
 						<input
 							type='text'
 							placeholder='First Name'
 							value={firstName}
-							onChange={(event) => setFirstName(event.target.value)}
+							onChange={(event) => setUser({ ...user, firstName: event.target.value })}
 							required
 						/>
 					</label>
@@ -62,7 +59,7 @@ export default function Membership() {
 							type='text'
 							placeholder='Last Name'
 							value={lastName}
-							onChange={(event) => setLastName(event.target.value)}
+							onChange={(event) => setUser({ ...user, lastName: event.target.value })}
 							required
 						/>
 					</label>
@@ -71,22 +68,27 @@ export default function Membership() {
 							type='email'
 							placeholder='Email'
 							value={email}
-							onChange={(event) => setEmail(event.target.value)}
+							onChange={(event) => setUser({ ...user, email: event.target.value })}
 							required
 						/>
 					</label>
 					<label>
 						<input
 							type='number'
-							placeholder='level'
-							step='.5'
+							placeholder='Level'
+							step='0.5'
 							value={level}
-							onChange={(event) => setLevel(event.target.value)}
+							onChange={(event) => setUser({ ...user, level: event.target.value })}
 							required
 						/>
 					</label>
 					<label>
-						<input type='text' value={referrer} placeholder='Referrer' onChange={(event) => setReferrer(event.target.value)} />
+						<input
+							type='text'
+							placeholder='Referrer'
+							value={referrer}
+							onChange={(event) => setUser({ ...user, referrer: event.target.value })}
+						/>
 					</label>
 					<input type='submit' disabled={isLoading} />
 				</form>

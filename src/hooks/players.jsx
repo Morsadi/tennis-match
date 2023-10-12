@@ -6,16 +6,21 @@ export function usePlayers() {
 	const [error, setError] = useState(null);
 	const [message, setMessage] = useState(null);
 
-	const getUsers = () => {
+	const getUsers = (query = {}, projection = {}, sort = {}) => {
 		setIsLoading(true);
 		const apiUrl = '/api/user/get';
+		const apiUrl1 = `/api/user/get?query=${JSON.stringify(query)}&projection=${JSON.stringify(
+			projection
+		)}&sort=${JSON.stringify(sort)}`;
 
-		fetch(apiUrl, {
+		const options = {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-		})
+		};
+
+		fetch(apiUrl1, options)
 			.then((response) => response.json())
 			.then((responseData) => {
 				setData(responseData);

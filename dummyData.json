@@ -10,7 +10,7 @@
   {
     "firstName": "Alice",
     "lastName": "Johnson",
-    "email": "alice@example.com",
+    "email": "alicejohnson@example.com",
     "level": 3.0,
     "referrer": "Bob Smith",
     "approved": false
@@ -18,7 +18,7 @@
   {
     "firstName": "Bob",
     "lastName": "Smith",
-    "email": "bob@example.com",
+    "email": "bobsmith@example.com",
     "level": 2.5,
     "referrer": "Eve Wilson",
     "approved": false
@@ -26,7 +26,7 @@
   {
     "firstName": "Eve",
     "lastName": "Wilson",
-    "email": "eve@example.com",
+    "email": "evewilson@example.com",
     "level": 4.0,
     "referrer": "Grace Lee",
     "approved": false
@@ -34,7 +34,7 @@
   {
     "firstName": "Grace",
     "lastName": "Lee",
-    "email": "grace@example.com",
+    "email": "gracelee@example.com",
     "level": 4.5,
     "referrer": "John Doe",
     "approved": false
@@ -42,7 +42,7 @@
   {
     "firstName": "Mark",
     "lastName": "Anderson",
-    "email": "mark@example.com",
+    "email": "markanderson@example.com",
     "level": 2.5,
     "referrer": "Alice Johnson",
     "approved": false
@@ -50,7 +50,7 @@
   {
     "firstName": "Laura",
     "lastName": "Brown",
-    "email": "laura@example.com",
+    "email": "laurabrown@example.com",
     "level": 3.5,
     "referrer": "Bob Smith",
     "approved": false
@@ -58,7 +58,7 @@
   {
     "firstName": "Daniel",
     "lastName": "White",
-    "email": "daniel@example.com",
+    "email": "danielwhite@example.com",
     "level": 5.0,
     "referrer": "Eve Wilson",
     "approved": false
@@ -66,7 +66,7 @@
   {
     "firstName": "Sophia",
     "lastName": "Taylor",
-    "email": "sophia@example.com",
+    "email": "sophiataylor@example.com",
     "level": 4.5,
     "referrer": "Grace Lee",
     "approved": false
@@ -74,9 +74,54 @@
   {
     "firstName": "Oliver",
     "lastName": "Moore",
-    "email": "oliver@example.com",
+    "email": "olivermoore@example.com",
     "level": 2.0,
     "referrer": "John Doe",
     "approved": false
+  },
+  {
+    "_id": {
+      "$oid": "65241f101d36a42c1fb7d9b1"
+    },
+    "firstName": "Badr",
+    "lastName": "Morsadi",
+    "email": "bmorsadi@example.com",
+    "level": 3.0,
+    "referrer": "Ron",
+    "partner": "",
+    "approved": false,
+    "__v": 0
+  },
+  {
+    "firstName": "Sophia",
+    "lastName": "Taylor",
+    "email": "sophiataylor2@example.com",
+    "level": 4.5,
+    "referrer": "Grace Lee",
+    "approved": false
+  },
+  {
+    "firstName": "Ethan",
+    "lastName": "Smith",
+    "email": "ethansmith@example.com",
+    "level": 3.0,
+    "referrer": "John Johnson",
+    "approved": true
+  },
+  {
+    "firstName": "Olivia",
+    "lastName": "Johnson",
+    "email": "oliviajohnson@example.com",
+    "level": 2.5,
+    "referrer": "Emily Davis",
+    "approved": false
+  },
+  {
+    "firstName": "Liam",
+    "lastName": "Brown",
+    "email": "liambrown@example.com",
+    "level": 4.0,
+    "referrer": "Emma Wilson",
+    "approved": true
   }
 ]

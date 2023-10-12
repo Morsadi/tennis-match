@@ -22,9 +22,21 @@
 
 .playerInfo {
 	display: grid;
-	grid-template-columns: 150px 250px 70px 1fr;
-	gap: var(--space-2);
+	grid-template-columns: 100px 1fr;
+	gap: var(--space-1);
 	color: #474747;
+}
+
+.playerInfo > * {
+	grid-column-start: 2;
+}
+.profileImgCont {
+	aspect-ratio: 1 / 1;
+	width: 80px;
+	background-color: #474747;
+	border-radius: 50%;
+	grid-column-start: 1;
+	grid-row: span 3;
 }
 
 .player h3 {
@@ -45,6 +57,25 @@
 	text-transform: uppercase;
 	font-family: system-ui;
 	font-weight: 500;
+}
+.level {
+	font-family: sans-serif;
+	font-weight: 600;
+	position: absolut;
+	left: 8px;
+	top: 8px;
+	background-color: #804d82;
+	color: #fff;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	font-size: var(--text-base);
+	padding: 3px;
+	line-height: 1.2;
+	border: 3px solid #315b7f;
 }
 
 .approve {
