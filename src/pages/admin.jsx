@@ -13,7 +13,7 @@ export default function Admin() {
 	// Example usage for getting users
 
 	useEffect(() => {
-		getUsers({level: {$gte: 2}}, {}, {level: -1});
+		getUsers({}, {}, {firstName: -1});
 	}, []);
 
 	const updateUserHandler = async (_id, actionData) => {

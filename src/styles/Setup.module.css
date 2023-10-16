@@ -1,0 +1,25 @@
+.courts {
+	background-color: grey;
+}
+.courts > div {
+	background-color: var(--court-green);
+	aspect-ratio: 1 / 1;
+	width: 100%;
+	max-width: 230px;
+	display: grid;
+	gap: 4px;
+	grid-template-columns: 1fr 1fr;
+	place-items: center;
+}
+
+.courts > div > div {
+	background-color: rgb(128, 128, 128);
+	aspect-ratio: 1 / 1;
+	max-width: 50%;
+	width: 100%;
+	overflow: hidden;
+}
+
+.courts div.isAvailable {
+	background-color: rgb(169 163 163);
+}
