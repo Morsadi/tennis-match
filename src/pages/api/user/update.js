@@ -3,24 +3,27 @@ import connectMongo from '@utils/connectDB';
 import User from '../../../models/user';
 
 export default async function handler(req, res) {
-  // Connect to MongoDB
-  await connectMongo();
+	// Connect to MongoDB
+	await connectMongo();
 
-  try {
-    const { _id, actionData } = req.body;
+	try {
+		const { _ids, actionData } = req.body;
 
-    console.log(_id, actionData);
+		console.log(_ids, actionData);
 
-    // Update the user based on the provided ID
-    const updatedUser = await User.findByIdAndUpdate(_id, actionData, { new: true });
+		// Update multiple users based on the provided IDs
+		const filter = _ids.length ? { _id: { $in: _ids } }: {};
+		const update = { $set: actionData };
+    
+		const updateResult = await User.updateMany(filter, update);
 
-    if (!updatedUser) {
-      return res.status(404).json({ message: 'User not found' });
-    }
+		if (updateResult.nModified === 0) {
+			return res.status(404).json({ message: 'No users found for the provided IDs' });
+		}
 
-    return res.status(200).json({ message: 'User updated successfully' });
-  } catch (error) {
-    console.error('Error:', error);
-    return res.status(500).json({ error: 'Internal server error' });
-  }
+		return res.status(200).json({ message: 'Users updated successfully' });
+	} catch (error) {
+		console.error('Error:', error);
+		return res.status(500).json({ error: 'Internal server error' });
+	}
 }

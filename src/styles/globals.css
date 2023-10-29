@@ -1,6 +1,8 @@
 :root {
 	--max-width: 1200px;
 	--controlled-width: 500px;
+	--font-body: 'Roboto Slab', serif;
+	--font-display: 'Bebas Neue', sans-serif;
 
 	/* fonts */
 	--text-base: 1rem;
@@ -31,7 +33,8 @@
 	--space-16: 64px;
 	--space-20: 80px;
 
-	--court-green: #4281A4;
+	--court-green: #4281a4;
+	--grandient-bg: linear-gradient(224.2deg, #48a9a6 -21.59%, #4281a4 111.62%);
 }
 
 * {

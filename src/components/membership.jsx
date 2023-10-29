@@ -5,15 +5,17 @@ import { usePlayers } from '@hooks/players';
 
 export default function Membership() {
 	const { getUsers, addUser, data, isLoading, message } = usePlayers();
+
 	const [user, setUser] = useState({
-		firstName: '',
-		lastName: '',
+		first_name: '',
+		last_name: '',
 		email: '',
+		passcode: '',
 		level: '',
 		referrer: '',
 	});
 
-	const { firstName, lastName, email, level, referrer } = user;
+	const { first_name, last_name, email, passcode, level, referrer } = user;
 
 	const saveUser = async (event) => {
 		event.preventDefault();
@@ -22,9 +24,10 @@ export default function Membership() {
 
 		// Reset user fields
 		setUser({
-			firstName: '',
-			lastName: '',
+			first_name: '',
+			last_name: '',
 			email: '',
+			passcode: '',
 			level: '',
 			referrer: '',
 		});
@@ -49,8 +52,8 @@ export default function Membership() {
 						<input
 							type='text'
 							placeholder='First Name'
-							value={firstName}
-							onChange={(event) => setUser({ ...user, firstName: event.target.value })}
+							value={first_name}
+							onChange={(event) => setUser({ ...user, first_name: event.target.value })}
 							required
 						/>
 					</label>
@@ -58,8 +61,8 @@ export default function Membership() {
 						<input
 							type='text'
 							placeholder='Last Name'
-							value={lastName}
-							onChange={(event) => setUser({ ...user, lastName: event.target.value })}
+							value={last_name}
+							onChange={(event) => setUser({ ...user, last_name: event.target.value })}
 							required
 						/>
 					</label>
@@ -69,6 +72,15 @@ export default function Membership() {
 							placeholder='Email'
 							value={email}
 							onChange={(event) => setUser({ ...user, email: event.target.value })}
+							required
+						/>
+					</label>
+					<label>
+						<input
+							type='password'
+							placeholder='Passcode'
+							value={passcode}
+							onChange={(event) => setUser({ ...user, passcode: event.target.value })}
 							required
 						/>
 					</label>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import styles from '@styles/Admin.module.css';
-import { User } from '../components/admin/user';
+import { User } from '../components/members/user';
 import { usePlayers } from '@hooks/players';
 import { useEffect } from 'react';
 
@@ -13,11 +13,11 @@ export default function Admin() {
 	// Example usage for getting users
 
 	useEffect(() => {
-		getUsers({}, {}, {firstName: -1});
+		getUsers({}, {}, {first_name: 1});
 	}, []);
 
 	const updateUserHandler = async (_id, actionData) => {
-		await updateUser(_id, actionData);
+		await updateUser([_id], actionData);
 	};
 	const deleteUserHandler = async (_id) => {
 		await deleteUser(_id);

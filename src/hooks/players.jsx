@@ -55,7 +55,7 @@ export function usePlayers() {
 			});
 	};
 
-	const updateUser = (_id, actionData) => {
+	const updateUser = (_ids, actionData) => {
 		setIsLoading(true);
 		const apiUrl = `/api/user/update`;
 
@@ -64,7 +64,7 @@ export function usePlayers() {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ _id, actionData }),
+			body: JSON.stringify({ _ids, actionData }),
 		})
 			.then((response) => response.json())
 			.then((responseData) => {
