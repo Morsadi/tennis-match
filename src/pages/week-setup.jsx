@@ -11,82 +11,49 @@ var testData = [
 	{
 		number: 1,
 		courtSides: {
-			a: {
-				_id: '652efa62458aca6401bcb5b8',
-				first_name: 'Jane',
-				last_name: 'Smith',
-				passcode: '0000',
-				level: 2,
-				is_playing_this_week: false,
-				registration_date: '2023-10-14T09:30:00.000Z',
-			},
-			b: {
-				_id: '652efa62458aca6401bcb5bc',
-				first_name: 'Sophia',
-				last_name: 'Davis',
-				passcode: '0000',
-				level: 6,
-				is_playing_this_week: false,
-				registration_date: '2023-10-10T16:00:00.000Z',
-			},
-			c: {},
-			d: {
-				_id: '652efa62458aca6401bcb5bd',
-				first_name: 'Robert',
-				last_name: 'Moore',
-				passcode: '0000',
-				level: 7,
-				is_playing_this_week: false,
-				registration_date: '2023-10-09T17:30:00.000Z',
-			},
+			a: '652efa62458aca6401bcb5b8',
+			b: '652efa62458aca6401bcb5bc',
+			c: '',
+			d: '',
 		},
 	},
 	{
 		number: 2,
 		courtSides: {
-			a: {
-				_id: '652efa62458aca6401bcb5c2',
-				first_name: 'Mia',
-				last_name: 'Wright',
-				passcode: '0000',
-				level: 12,
-				is_playing_this_week: false,
-				registration_date: '2023-10-04T08:30:00.000Z',
-			},
-			b: {},
-			c: {},
-			d: {},
+			a: '',
+			b: '',
+			c: '',
+			d: '',
 		},
 	},
 	{
 		number: 3,
 		courtSides: {
-			a: {},
-			b: {},
-			c: {},
-			d: {},
+			a: '',
+			b: '',
+			c: '',
+			d: '',
 		},
 	},
 	{
 		number: 4,
 		courtSides: {
-			a: {},
-			b: {},
-			c: {},
-			d: {},
+			a: '',
+			b: '',
+			c: '',
+			d: '',
 		},
 	},
 	{
 		number: 5,
 		courtSides: {
-			a: {},
-			b: {},
-			c: {},
-			d: {},
+			a: '',
+			b: '',
+			c: '',
+			d: '',
 		},
 	},
 ];
-
 export default function Home() {
 	const { getUsers, updateUser, data, error, isLoading, message } = usePlayers();
 	const { addLineup, getLineups, lineups } = useLineups();
@@ -98,66 +65,46 @@ export default function Home() {
 	const playersPerCourt = 4;
 
 	useEffect(() => {
-		async function fetchData (){
-
+		async function fetchData() {
 			await getUsers({ approved: true });
 			await getLineups();
 		}
 		fetchData();
 	}, []);
-
+	useEffect(() => {
+		setDictionary(convertIdToObject([...data]));
+		setHall([...data]);
+	}, [data]);
 
 	useEffect(() => {
-		if (data && data.length > 0) {
-			setDictionary(convertIdToObject([...data]));
+		if (data && data.length > 0 && lineups && lineups.courts) {
 			const numCourts = Math.ceil(data.length / playersPerCourt);
 
 			const courtsData = new Array(numCourts).fill().map((_, i) => {
+				let newHall = [...data];
+				const newCourtSides = {};
+				// Still need to fix certain players don't filter out.
+
+				['a', 'b', 'c', 'd'].map((courtSide) => {
+					if (lineups.courts[i] && lineups.courts[i].courtSides && lineups.courts[i].courtSides[courtSide]) {
+						newHall = newHall.filter((player) => player._id !== lineups.courts[i].courtSides[courtSide]);
+
+						setHall(newHall);
+						newCourtSides[courtSide] = lineups.courts[i].courtSides[courtSide];
+					} else {
+						newCourtSides[courtSide] = '';
+					}
+				});
+
 				return {
 					number: i + 1,
-					courtSides: {
-						a: {},
-						b: {},
-						c: {},
-						d: {},
-					},
+					courtSides: newCourtSides,
 				};
 			});
 
 			setCourts(courtsData);
-
-			const existingPlayersInCourts = _.flatMap(testData, 'courtSides');
-			const existingPlayerIdsInCourts = _.values(_.mapValues(existingPlayersInCourts, '_id'));
-
-			let filledCourts = [...testData];
-			lineups.courts
-
-			filledCourts.forEach((court) => {
-				Object.keys(court.courtSides).forEach((side) => {
-					if (!court.courtSides[side]) return;
-
-					const playerId = court.courtSides[side]._id;
-					if (existingPlayerIdsInCourts.includes(playerId)) {
-						court.courtSides[side] = dictionary[playerId];
-					}
-				});
-			});
-			filledCourts.length && setCourts(filledCourts);
-
-			setHall([...data]);
-
-			const playersInCourts = _.flatMap(testData, 'courtSides');
-			let playerIdsInCourts = _.map(playersInCourts, (court) => {
-				return _.values(_.mapValues(court, '_id'));
-			});
-
-			playerIdsInCourts = _.flatten(playerIdsInCourts).filter((id) => id);
-
-			const newHallWithoutCourtPlayers = _.filter(data, (player) => !playerIdsInCourts.includes(player._id));
-			setHall(newHallWithoutCourtPlayers);
-			// console.log('lineup', lineups);
 		}
-	}, [data]);
+	}, [lineups]);
 
 	function convertIdToObject(inputArray) {
 		const result = {};
@@ -213,23 +160,19 @@ export default function Home() {
 
 				if (!!newCourts[courtNumber - 1].courtSides[courtSide]) return;
 
-				newCourts[courtNumber - 1].courtSides[courtSide] = dictionary[draggableId];
+				newCourts[courtNumber - 1].courtSides[courtSide] = draggableId;
 				newLineup.splice(source.index, 1);
 
 				setCourts(newCourts);
 			} else if (source.droppableId !== 'HALL' && destination.droppableId === 'HALL') {
 				const [courtNumber, courtSide] = source.droppableId.split('-');
-				const movedPlayer = newCourts[courtNumber - 1].courtSides[courtSide];
+				const movedPlayerId = newCourts[courtNumber - 1].courtSides[courtSide];
 
-				newLineup.splice(destinationIndex, 0, movedPlayer);
+				newLineup.splice(destinationIndex, 0, dictionary[movedPlayerId]);
 
-				newCourts[courtNumber - 1].courtSides[courtSide] = {};
+				newCourts[courtNumber - 1].courtSides[courtSide] = '';
 
 				setCourts(newCourts);
-			} else {
-				const [movedPlayer] = newLineup.splice(sourceIndex, 1);
-
-				newLineup.splice(destinationIndex, 0, movedPlayer);
 			}
 
 			return setHall(newLineup);
@@ -241,7 +184,6 @@ export default function Home() {
 			courts,
 		};
 		addLineup(newLineup);
-		getLineups();
 	};
 
 	return (
@@ -326,10 +268,7 @@ export default function Home() {
 															className={isDragging ? styles.isAvailable : ''}
 															ref={provided.innerRef}
 															{...provided.droppableProps}
-															busy={
-																court.courtSides[courtSide] &&
-																(!_.isEmpty(court.courtSides[courtSide])).toString()
-															}
+															busy={court.courtSides[courtSide] ? 'true' : 'false'}
 														>
 															<Draggable
 																draggableId={court.number + '-' + courtSide}
@@ -343,14 +282,19 @@ export default function Home() {
 																		ref={provided.innerRef}
 																		className={styles.player}
 																	>
-																		{court.courtSides[courtSide]?._id ? (
+																		{dictionary[court.courtSides[courtSide]]?._id ? (
 																			<>
 																				{playerProfile}
 																				<h3>
-																					{court.courtSides[courtSide].first_name}{' '}
 																					{
-																						court.courtSides[courtSide]
-																							.last_name[0]
+																						dictionary[
+																							court.courtSides[courtSide]
+																						]?.first_name
+																					}{' '}
+																					{
+																						dictionary[
+																							court.courtSides[courtSide]
+																						]?.last_name[0]
 																					}
 																					.
 																				</h3>
