@@ -1,5 +1,6 @@
 .dashboard {
 	background: var(--grandient-bg);
+	padding-bottom: var(--space-16);
 }
 .dashboard .inner {
 	padding: 0 10px;
@@ -87,6 +88,11 @@
     padding-left: 12px;
 	padding-bottom: 10px;
 }
+.dashboard nav {
+	margin-bottom: var(--space-10);
+	z-index: 1;
+    position: relative;
+}
 @media (min-width: 40em) {
 	.dropdownButton {
 		display: none;
@@ -104,9 +110,6 @@
 	.dashboard nav {
 		display: grid;
 		justify-items: center;
-		/* position: fixed;
-		width: 100%;
-		top: 0; */
 	}
 }
 

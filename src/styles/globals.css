@@ -34,7 +34,8 @@
 	--space-20: 80px;
 
 	--court-green: #4281a4;
-	--grandient-bg: linear-gradient(224.2deg, #48a9a6 -21.59%, #4281a4 111.62%);
+	/* --grandient-bg: linear-gradient(224.2deg, #48a9a6 -21.59%, #4281a4 111.62%); */
+	--grandient-bg: linear-gradient(354.2deg, #48a9a6 -21.59%, #3279a1 111.62%);
 }
 
 * {

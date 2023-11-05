@@ -24,6 +24,6 @@
     },
   },
   "browser": { "fs": false, "child_process": false },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/hooks/useMongoDB.jsx", "src/models/user.js", "src/utils/connectDB.js", "src/styles/Membership.module.css", "src/styles/Dashboard.module.css"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/hooks/useMongoDB.jsx", "src/models/lineup.js", "src/models/user.js", "src/utils/connectDB.js", "src/styles/Membership.module.css", "src/styles/Dashboard.module.css"],
   "exclude": ["node_modules"]
 }
